@@ -2,6 +2,8 @@ import { ThreeMFLoader } from 'three/examples/jsm/Addons.js';
 import './style.css'
 import * as THREE from 'three'
 
+const clock = new THREE.Clock()
+
 // scene
 const scene = new THREE.Scene()
 
@@ -37,7 +39,10 @@ renderer.setSize(window.innerWidth, window.innerHeight)
 
 // turning the renderer on 
 function animate() {
-    cube.rotation.y = cube.rotation.y + 0.1
+    const delta = clock.getElapsedTime()
+    console.log(delta)
+    cube.rotation.y = delta * 0.12
+    cube.rotation.x = delta * 0.12
     renderer.render(scene, camera)
 
     requestAnimationFrame(animate)
