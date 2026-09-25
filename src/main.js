@@ -36,4 +36,11 @@ renderer.setSize(window.innerWidth, window.innerHeight)
 
 
 // turning the renderer on 
-renderer.render(scene, camera)
+function animate() {
+    cube.rotation.y = cube.rotation.y + 0.1
+    renderer.render(scene, camera)
+
+    requestAnimationFrame(animate)
+}
+
+animate()
