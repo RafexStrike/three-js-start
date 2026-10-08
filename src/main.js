@@ -1,6 +1,7 @@
 import { ThreeMFLoader } from 'three/examples/jsm/Addons.js';
 import './style.css'
 import * as THREE from 'three'
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 const size = {
     width: window.innerWidth,
@@ -33,11 +34,15 @@ const camera = new THREE.PerspectiveCamera(
     100
 )
 camera.position.z = 3;
+camera.lookAt(0, 0, 0)
 
 // renderer
 const canvas = document.querySelector("#webgl")
 const renderer = new THREE.WebGLRenderer({ canvas: canvas })
 renderer.setSize(size.width, size.height)
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
 
 window.addEventListener("resize", () => {
     size.height = window.innerHeight;
@@ -51,10 +56,9 @@ window.addEventListener("resize", () => {
 
 // turning the renderer on 
 function animate() {
-    console.log("timer before update", timer)
     timer.update()
+    controls.update()
     const delta = timer.getDelta()
-    console.log(delta)
     cube.rotation.y = cube.rotation.y + delta
     cube.rotation.x = cube.rotation.x + delta
     renderer.render(scene, camera)
