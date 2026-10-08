@@ -2,6 +2,10 @@ import { ThreeMFLoader } from 'three/examples/jsm/Addons.js';
 import './style.css'
 import * as THREE from 'three'
 
+const size = {
+    width: window.innerWidth,
+    height: window.innerHeight
+}
 const timer = new THREE.Timer()
 
 // scene
@@ -24,8 +28,7 @@ scene.add(cube);
 // camera
 const camera = new THREE.PerspectiveCamera(
     75,
-    window.innerWidth / window.innerHeight,
-    // window.innerHeight / window.innerWidth,
+    size.width / size.height,
     0.1,
     100
 )
@@ -34,7 +37,8 @@ camera.position.z = 3;
 // renderer
 const canvas = document.querySelector("#webgl")
 const renderer = new THREE.WebGLRenderer({ canvas: canvas })
-renderer.setSize(window.innerWidth, window.innerHeight)
+renderer.setSize(size.width, size.height)
+
 
 
 // turning the renderer on 
