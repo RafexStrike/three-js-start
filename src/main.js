@@ -39,7 +39,15 @@ const canvas = document.querySelector("#webgl")
 const renderer = new THREE.WebGLRenderer({ canvas: canvas })
 renderer.setSize(size.width, size.height)
 
+window.addEventListener("resize", () => {
+    size.height = window.innerHeight;
+    size.width = window.innerWidth;
 
+    camera.aspect = size.width / size.height
+    camera.updateProjectionMatrix()
+    renderer.setSize(size.width, size.height)
+
+})
 
 // turning the renderer on 
 function animate() {
