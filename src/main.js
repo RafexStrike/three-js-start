@@ -2,6 +2,9 @@ import { ThreeMFLoader } from 'three/examples/jsm/Addons.js';
 import './style.css'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import GUI from 'lil-gui';
+
+const gui = new GUI()
 
 const size = {
     width: window.innerWidth,
@@ -25,6 +28,9 @@ const cube = new THREE.Mesh(geometry, material);
 
 // add the object to the scene
 scene.add(cube);
+
+// add the gui
+gui.add(cube.position, "x").min(-3).max(3).step(0.01).name("Position X");
 
 // camera
 const camera = new THREE.PerspectiveCamera(
